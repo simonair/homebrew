@@ -56,6 +56,7 @@ class Nginx < Formula
 
     args << passenger_config_args if build.include? 'with-passenger'
     args << "--with-http_dav_module" if build.include? 'with-webdav'
+    args << "--with-http_gzip_static_module" if build.include? 'with-gzip'
     args << "--with-debug" if build.include? 'with-debug'
 
     system "./configure", *args
