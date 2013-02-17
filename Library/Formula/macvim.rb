@@ -13,6 +13,15 @@ class Macvim < Formula
   option "with-cscope", "Build with Cscope support"
   option "with-lua", "Build with Lua scripting support"
   option "with-python3", "Build with Python 3 scripting support"
+  option "with-breakindent-patch", "Build with breakindent patch."
+
+  def patches
+      result = Hash.new { |hash, key| hash[key] = [] }
+      if ARGV.include? '--with-breakindent-patch'
+          result[:p1] << 'https://gist.github.com/raw/4657010/2e367679bc6931c3a1400cd908b3deb27f4974a3/b4winckler-macvim-c898b78-breakindent.patch'
+      end
+      result
+  end
 
   depends_on 'cscope' if build.include? 'with-cscope'
   depends_on 'lua' if build.include? 'with-lua'
